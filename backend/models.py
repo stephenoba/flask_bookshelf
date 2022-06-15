@@ -54,6 +54,9 @@ class Book(db.Model):
         db.session.delete(self)
         db.session.commit()
 
+    def revert_changes(self):
+        db.session.rollback()
+
     def format(self):
         return {
             "id": self.id,

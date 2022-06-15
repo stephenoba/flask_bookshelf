@@ -9,6 +9,7 @@ import Book from './components/Book';
 class App extends Component {
   constructor(props){
     super();
+    this.base_uri = "http://127.0.0.1:5000"
     this.state = {
       page: 1,
       totalBooks: 0,
@@ -18,7 +19,7 @@ class App extends Component {
 
   getBooks = () => {
     $.ajax({
-      url: `/books?page=${this.state.page}`, //TODO: update request URL
+      url: `${this.base_uri}/books?page=${this.state.page}`, //TODO: update request URL
       type: "GET",
       success: (result) => {
         this.setState({
@@ -55,7 +56,7 @@ class App extends Component {
     let targetBook = books.find((book) => book.id === id);
 
     $.ajax({
-      url: `/books/${id}`, //TODO: update request URL
+      url: `${this.base_uri}/books/${id}`, //TODO: update request URL
       type: "PATCH",
       dataType: 'json',
       contentType: 'application/json',
